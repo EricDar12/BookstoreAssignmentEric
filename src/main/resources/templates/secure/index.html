@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<title>Bookstore Assignment</title>
+	<link href="/css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+	<h1>Online Bookstore</h1>
+	<table th:if="${bookList != null and not bookList.isEmpty()}">
+		<tr>
+			<th>Title</th>
+			<th>Price</th>
+			<th>Add to Cart</th>
+			<th>Details</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<tr th:each="aBook:${bookList}">
+			<td th:text="${aBook.title}">Title</td>
+			<td th:text="${aBook.price}">Price</td>
+			<td><a th:href="@{/secure/addToCart/}+${aBook.id}">Add to Cart</a></td>
+			<td><a th:href="@{/secure/bookDetails/}+${aBook.id}">Details</a></td>
+			<td><a th:href="@{/secure/editBookById/}+${aBook.id}">Edit</a></td>
+			<td><a th:href="@{/secure/deleteBookById/}+${aBook.id}">Delete</a></td>
+		</tr>
+	</table>
+	<br>
+	<hr>
+	<br>
+	<form method="post" action="#" th:action="@{/secure/addBook}" th:object="${book}">
+		<input type="hidden" name="id" th:field="*{id}" />
+		Title: <input type="text" th:field="*{title}" required /><br>
+		Author: <input type="text" th:field="*{author}" required /><br>
+		ISBN: <input type="text" th:field="*{isbn}" required /><br>
+		Price: <input type="number" step="0.01" th:field="*{price}" min="0" required /><br>
+		Description: <input type="text" th:field="*{description}" required /><br>
+		<input type="submit" value="Add Book!" />
+	</form>
+	<h2>Cart</h2>
+	<div th:if="${session.cartList != null and not session.cartList.isEmpty()}">
+		<table>
+			<tr>
+				<th>Title</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+			<tr th:each="aItem:${session.cartList}">
+				<td th:text="${aItem.title}">Title</td>
+				<td th:text="${aItem.price}"Price</td>
+				<td><a th:href="@{/secure/removeFromCart/}+${aItem.id}">Remove</a></td>
+			</tr>
+		</table>
+		Total Price: <span th:text="${totalPrice}">0.00</span>
+		<form method="post" action="#" th:action="@{/secure/checkOut}">
+			<input type="submit" value="Checkout">
+		</form>
+	</div>
+	<div class="form-container">
+		<form method="get" th:action="@{/secure}">
+			<input type="submit" value="Home" />
+		</form>
+		<form method="post" th:action="@{/logout}">
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
+
+</body>
+</html>

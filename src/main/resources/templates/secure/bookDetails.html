@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Book Details</title>
+        <link href="/css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Book Details</h1>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.author}">Author</td>
+                <td th:text="${book.isbn}">ISBN</td>
+                <td th:text="${book.price}">Price</td>
+                <td th:text="${book.description}">Description</td>
+            </tr>
+        </table>
+        <div>
+            <form method="get" th:action="@{/secure}">
+                <input type="submit" value="Home" />
+            </form>
+        </div>
+    </body>
+</html>

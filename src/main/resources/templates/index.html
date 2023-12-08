@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Landing Page</title>
+        <style>
+            body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            }
+            div {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+            color: #333;
+            }
+            p {
+            color: #666;
+            margin-bottom: 10px;
+            }
+            a {
+            color: #007bff;
+            text-decoration: none;
+            }
+            a:hover {
+            text-decoration: underline;
+            }
+            input[type="submit"] {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Welcome to the Bookstore!</h1>
+            <p>In order to access the storefront, please log in or create an account.</p>
+            <p>Navigate to the secured pages by clicking</p>
+            <form method="get" th:action="@{/secure}">
+                <input type="submit" value="Home" />
+            </form>
+        </div>
+    </body>
+</html>

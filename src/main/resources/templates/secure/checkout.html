@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Checkout Page</title>
+        <link href="/css/checkout.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="first-container">
+            <h1>Order Complete For User: <span th:text="${user}"></span></h1>
+            <p><b>Order Details: </b><span th:text="${orderDetails}"></span></p>
+            <p><b>Price: </b><span th:text="${totalPrice}"></span></p>
+            <div class="form-container">
+                <form method="get" th:action="@{/secure}">
+                    <input type="submit" value="Home" />
+                </form>
+                <form method="post" th:action="@{/logout}">
+                    <input type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
+        <style>
+            body {
+            font-family: Arial, sans-serif;
+            }
+            .container {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 50px;
+            }
+            h1 {
+            color: #007bff;
+            }
+            label {
+            display: block;
+            margin-top: 10px;
+            }
+            input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            }
+            input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            }
+            input[type="submit"]:hover {
+            background-color: #0056b3;
+            }
+            .error {
+            color: red;
+            }
+        </style>
+    </head>
+    <div class="container">
+        <div id="error" class="error">
+            <p th:text="${error}"></p>
+        </div>
+        <h1>Register Here!</h1>
+        <form name="form" action="#" th:action="@{/register}" method="post" onsubmit="return verify()">
+            Email: <input type="email" name="username" /><br>
+            Password: <input type="password" name="password" /><br>
+            Verify Password: <input type="password" name="verifyPassword" /><br>
+            <input type="submit" value="Register">  
+	    </form>
+	<p><b>Back to Login</b></p>
+        <form method="get" th:action="@{login}">
+            <input type="submit" value="Back to Login"/>
+        </form>
+    </div>
+</html>
